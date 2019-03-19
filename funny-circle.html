@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<canvas id="myCanvas" width="1000px" height="500px" style="border:1px solid #d3d3d3;"></canvas>
+<script>
+    let x = 100;
+    let y = 150;
+    let r = 30;
+    let color = "green";
+    let vx = 1;
+    let vy = -1;
+
+    function penCircle() {
+        let c = document.getElementById("myCanvas");
+        let pen = c.getContext("2d");
+        pen.clearRect(0, 0, 1000, 500);
+        pen.beginPath();
+        pen.arc(x, y, r, 0, 2 * Math.PI);
+        pen.fillStyle = color;
+        pen.fill();
+        pen.stroke();
+        if ((x + vx) > (1000 - r) || (x + vx) < r) {
+            vx = -vx;
+        } else if ((y + vy) > (500 - r) || (y + vy) < r) {
+            vy = -vy;
+        }
+        x += vx;
+        y += vy;
+    }
+
+    for (let i = 1; i < 5; i++) {
+
+        setInterval(penCircle, 10);
+    }
+</script>
+</body>
+</html>
